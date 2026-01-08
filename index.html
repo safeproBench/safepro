@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description"
+        content="SafePro introduces a benchmark designed to evaluate safety alignment of AI agent performing professional tasks.">
+    <meta name="keywords" content="SafePro, AI Agents, Dataset">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SafeKey: Amplifying Aha-Moment Insights for Safety Reasoning</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'G-PYVRSFMDRL');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="icon" href="./static/logo.svg">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+</head>
+
+<body>
+
+    <!-- <nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://keunhong.com">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a> -->
+
+    <!--       <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://hypernerf.github.io">
+            HyperNeRF
+          </a>
+          <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a>
+        </div>
+      </div> -->
+    </div>
+
+    </div>
+    </nav>
+
+
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">SafePro: Evaluating the Safety of Professional-Level AI
+                            Agents</h1>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                                <a href="https://kevinz-01.github.io/">Kaiwen Zhou</a><sup>1</sup>,</span>
+                            <span class="author-block">
+                                <a href="https://xuandongzhao.github.io/">Shreedhar Jangam</a><sup>1</sup>,</span>
+                            <span class="author-block">
+                                <a href="https://scholar.google.com/citations?user=NIv_aeQAAAAJ&hl=en">Ashwin
+                                    Nagarajan</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://scholar.google.com/citations?user=HtNfeKYAAAAJ&hl=en">Tejas
+                                    Polu</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://scholar.google.com/citations?user=hFhhrmgAAAAJ&hl=en">Suhas
+                                    Oruganti</a><sup>1</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://dawnsong.io/">Chengzhi Liu</a><sup>2</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://dawnsong.io/">Ching-Chen Kuo</a><sup>3</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://dawnsong.io/">Yuting Zheng</a><sup>3</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://dawnsong.io/">Sravana Narayanaraju</a><sup>3</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://eric-xw.github.io/">Xin Eric Wang</a><sup>1,2</sup>,
+                            </span>
+
+                        </div>
+
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>UC Santa Cruz,</span>
+                            <span class="author-block"><sup>2</sup>UC Santa Barbara,</span>
+                            <span class="author-block"><sup>3</sup>Cisco Research</span>
+                        </div>
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- PDF Link -->
+                                <span class="link-block">
+                                    <a href="" class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                                <!-- Code Link -->
+                                <span class="link-block">
+                                    <a href="" class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fab fa-github"></i>
+                                        </span>
+                                        <span>Code</span>
+                                    </a>
+                                </span>
+                                <!-- Model Link -->
+                                <span class="link-block">
+                                    <a href="" class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="far fa-images"></i>
+                                        </span>
+                                        <span>Models</span>
+                                    </a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <figure class="image is-centered" style="width: 70%; margin: 0 auto 1rem;  text-align: center;">
+            <img src="./static/images/fig1.pdf" alt="image" style="width: 80%; height: auto;" loading="lazy" />
+            <figcaption style="text-align: center;">
+                Figure 1: <b>Overview of SafePro benchmark.</b> (Left) The SafePro dataset contains safety tests on
+                various professional sectors and occupations, revealing critical safety risks in current AI agents.
+                (Right) State-of-the-art AI models exhibit high unsafe rates in the SafePro benchmark.
+            </figcaption>
+        </figure>
+    </section>
+
+    <div class="container is-max-desktop">
+        <!-- Abstract -->
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Abstract</h2>
+                <div class="content has-text-justified">
+                    <p>
+                        Large language model-based agents are rapidly evolving from simple conversational assistants
+                        into autonomous systems capable of performing complex, professional-level tasks in various
+                        domains.
+                        While these advancements promise significant productivity gains, they also introduce critical
+                        safety risks that remain under-explored.
+                        Existing safety evaluations primarily focus on simple, daily assistance tasks, failing to
+                        capture the intricate decision-making processes and potential consequences of misaligned
+                        behaviors in professional settings.
+                        To address this gap, we introduce <b>SafePro</b>, a comprehensive benchmark designed to evaluate
+                        the safety alignment of AI agents performing professional activities. SafePro features a dataset
+                        of high-complexity tasks across diverse professional domains with safety risks, developed
+                        through a rigorous iterative creation and review process.
+                        Our evaluation of state-of-the-art AI models reveals significant safety vulnerabilities and
+                        uncovers new unsafe behaviors in professional contexts. We further show that these models
+                        exhibit both insufficient safety judgment and weak safety alignment when executing complex
+                        professional tasks. In addition, we investigate safety mitigation strategies for improving agent
+                        safety in these scenarios and observe encouraging improvements.
+                        Together, our findings highlight the urgent need for robust, task-aware safety mechanisms
+                        tailored to the next generation of professional AI agents.
+                        <span style="color: red;">Warning: this paper includes examples that may be offensive or
+                            harmful.</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sections -->
+        <div class="columns is-centered has-text-centered" style="margin-top: 2rem;">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Key Contributions</h2>
+                <div class="content has-text-justified"
+                    style="text-align: left; max-width: 800px; margin: 1.5rem auto;">
+                    <ul style="line-height: 1.8;">
+                        <li><strong>SafePro dataset:</strong> 275 professional tasks across 9 sectors / 51 occupations.
+                        </li>
+                        <li><strong>Evaluation framework:</strong> Agent setup + LLM-as-judge unsafe-rate metric.</li>
+                        <li><strong>Findings + mitigations:</strong> High unsafe rates; mitigation exploration.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="columns is-centered has-text-centered" style="margin-top: 0rem;">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">The SafePro Dataset</h2>
+            </div>
+        </div>
+
+        <section class="section">
+            <figure class="image is-centered" style="width: 95%; margin: 0 auto 1rem;  text-align: center;">
+                <img src="./static/images/fig2.pdf" alt="image" style="width: 100%; height: auto;" loading="lazy" />
+                <figcaption style="text-align: center;">
+                    Figure 2: <b>Data creation process for SafePro.</b> We first define a set of requirements for
+                    harmful task
+                    creation. The data creators then generate harmful professional tasks through two approaches: benign
+                    task transformation and new harmful task generation. Each created task undergoes iterative review
+                    and revision to ensure quality.
+                </figcaption>
+            </figure>
+        </section>
+
+        <section class="section">
+            <div class="columns is-centered">
+                <div class="column is-half">
+                    <table class="table is-bordered is-striped is-fullwidth" style="margin: 0 auto;">
+                        <thead>
+                            <tr>
+                                <th>Risk Category</th>
+                                <th>Samples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Property / financial loss</td>
+                                <td>67</td>
+                            </tr>
+                            <tr>
+                                <td>Discrimination / bias</td>
+                                <td>43</td>
+                            </tr>
+                            <tr>
+                                <td>Misinformation</td>
+                                <td>39</td>
+                            </tr>
+                            <tr>
+                                <td>Information disclosure</td>
+                                <td>27</td>
+                            </tr>
+                            <tr>
+                                <td>Physical harm</td>
+                                <td>21</td>
+                            </tr>
+                            <tr>
+                                <td>System compromise</td>
+                                <td>11</td>
+                            </tr>
+                            <tr>
+                                <td>Environmental harm</td>
+                                <td>9</td>
+                            </tr>
+                            <tr>
+                                <td>Intellectual property misuse</td>
+                                <td>4</td>
+                            </tr>
+                            <tr>
+                                <td>Other illegal or violating regulations</td>
+                                <td>54</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.95rem;"><b>Table 1:</b> Data samples
+                        distribution by Risk Category.</p>
+                </div>
+                <div class="column is-half">
+                    <table class="table is-bordered is-striped is-fullwidth" style="margin: 0 auto;">
+                        <thead>
+                            <tr>
+                                <th>Sector</th>
+                                <th>Samples</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Real Estate</td>
+                                <td>43</td>
+                            </tr>
+                            <tr>
+                                <td>PSTS</td>
+                                <td>35</td>
+                            </tr>
+                            <tr>
+                                <td>Government</td>
+                                <td>33</td>
+                            </tr>
+                            <tr>
+                                <td>Retail</td>
+                                <td>31</td>
+                            </tr>
+                            <tr>
+                                <td>Wholesale</td>
+                                <td>31</td>
+                            </tr>
+                            <tr>
+                                <td>Manufacturing</td>
+                                <td>31</td>
+                            </tr>
+                            <tr>
+                                <td>HCSA</td>
+                                <td>25</td>
+                            </tr>
+                            <tr>
+                                <td>Information</td>
+                                <td>24</td>
+                            </tr>
+                            <tr>
+                                <td>Finance</td>
+                                <td>22</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.95rem;"><b>Table 2:</b> Data samples by
+                        occupation sector. PSTS: Professional, Scientific, and Technical Services; HCSA: Health Care and
+                        Social Assistance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="columns is-centered">
+                <div class="column is-four-fifths">
+                    <table class="table is-bordered is-striped is-fullwidth" style="margin: 0 auto; font-size: 0.9rem;">
+                        <thead>
+                            <tr>
+                                <th>Dataset</th>
+                                <th>Avg. Instruction Length</th>
+                                <th>Task Domain</th>
+                                <th>Multimodal</th>
+                                <th>Real Web Search</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>AgentHarm (Andriushchenko et al., 2024)</td>
+                                <td>42.3</td>
+                                <td>Daily</td>
+                                <td>✗</td>
+                                <td>✗</td>
+                            </tr>
+                            <tr>
+                                <td>InjectAgent (Debenedetti et al., 2024)</td>
+                                <td>31.4</td>
+                                <td>Daily</td>
+                                <td>✗</td>
+                                <td>✗</td>
+                            </tr>
+                            <tr>
+                                <td>Browser-art (Kumar et al., 2025)</td>
+                                <td>32.4</td>
+                                <td>Daily</td>
+                                <td>✗</td>
+                                <td>✓</td>
+                            </tr>
+                            <tr>
+                                <td>SafeArena (Kumar et al., 2025)</td>
+                                <td>21.9</td>
+                                <td>Daily</td>
+                                <td>✓</td>
+                                <td>✗</td>
+                            </tr>
+                            <tr>
+                                <td>RiOSWorld (Yang et al., 2025)</td>
+                                <td>32.2</td>
+                                <td>Daily</td>
+                                <td>✓</td>
+                                <td>✓</td>
+                            </tr>
+                            <tr>
+                                <td>SciSafetyBench (Zhu et al., 2025)</td>
+                                <td>50.3</td>
+                                <td>Research</td>
+                                <td>✗</td>
+                                <td>✓</td>
+                            </tr>
+                            <tr style="font-weight: bold; background-color: #f5f5f5;">
+                                <td><strong>SafePro (Ours)</strong></td>
+                                <td><strong>354.5</strong></td>
+                                <td><strong>Professional</strong></td>
+                                <td><strong>✓</strong></td>
+                                <td><strong>✓</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.95rem;"><b>Table 3:</b> Comparison of
+                        SafePro with existing agent safety evaluation datasets.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="columns is-centered has-text-centered" style="margin-top: -0.5rem;">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Results</h2>
+            </div>
+        </div>
+
+        <section class="section" style="margin-top: -2.6rem;">
+            <figure class="image is-centered" style="width: 85%; margin: 0 auto 1rem; text-align: center;">
+                <img src="./static/images/fig4.pdf" alt="image" style="width: 100%; height: auto;" loading="lazy" />
+                <figcaption style="text-align: center;">
+                    Figure 4: Examples of unsafe actions by AI agents in SafePro benchmark.
+                </figcaption>
+            </figure>
+        </section>
+
+        <section class="section" style="margin-top: -1rem;">
+            <div class="columns is-centered">
+                <div class="column is-full">
+                    <div style="overflow-x: auto;">
+                        <table class="table is-bordered is-striped is-fullwidth"
+                            style="margin: 0 auto; font-size: 0.85rem;">
+                            <thead>
+                                <tr style="background-color: #f5f5f5;">
+                                    <th>Model</th>
+                                    <th>Real Estate</th>
+                                    <th>Government</th>
+                                    <th>Manufacture</th>
+                                    <th>PSTS</th>
+                                    <th>HCSA</th>
+                                    <th>Finance</th>
+                                    <th>Retail</th>
+                                    <th>Wholesale</th>
+                                    <th>Information</th>
+                                    <th>Avg.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Gemini 2.5-Pro</td>
+                                    <td>83.7</td>
+                                    <td>81.8</td>
+                                    <td>77.4</td>
+                                    <td>57.1</td>
+                                    <td>84.0</td>
+                                    <td>68.2</td>
+                                    <td>77.4</td>
+                                    <td>77.4</td>
+                                    <td>79.2</td>
+                                    <td>76.4</td>
+                                </tr>
+                                <tr>
+                                    <td>Gemini 3-Flash</td>
+                                    <td>65.1</td>
+                                    <td>69.7</td>
+                                    <td>64.5</td>
+                                    <td>48.6</td>
+                                    <td>80.0</td>
+                                    <td>90.9</td>
+                                    <td>67.7</td>
+                                    <td>58.1</td>
+                                    <td>75.0</td>
+                                    <td>67.3</td>
+                                </tr>
+                                <tr>
+                                    <td>Deepseek-V3.2</td>
+                                    <td>60.5</td>
+                                    <td>54.5</td>
+                                    <td>54.8</td>
+                                    <td>54.3</td>
+                                    <td>60.0</td>
+                                    <td>59.1</td>
+                                    <td>77.4</td>
+                                    <td>64.5</td>
+                                    <td>79.2</td>
+                                    <td>62.2</td>
+                                </tr>
+                                <tr>
+                                    <td>Grok 4.1 Fast</td>
+                                    <td>46.5</td>
+                                    <td>51.5</td>
+                                    <td>64.5</td>
+                                    <td>45.7</td>
+                                    <td>60.0</td>
+                                    <td>45.5</td>
+                                    <td>67.7</td>
+                                    <td>77.4</td>
+                                    <td>70.8</td>
+                                    <td>58.2</td>
+                                </tr>
+                                <tr>
+                                    <td>GPT-5-mini</td>
+                                    <td>62.8</td>
+                                    <td>72.7</td>
+                                    <td>48.4</td>
+                                    <td>40.0</td>
+                                    <td>56.0</td>
+                                    <td>31.8</td>
+                                    <td>67.7</td>
+                                    <td>58.1</td>
+                                    <td>54.2</td>
+                                    <td>55.6</td>
+                                </tr>
+                                <tr>
+                                    <td>GPT-5</td>
+                                    <td>55.8</td>
+                                    <td>72.7</td>
+                                    <td>54.8</td>
+                                    <td>25.7</td>
+                                    <td>44.0</td>
+                                    <td>27.3</td>
+                                    <td>48.4</td>
+                                    <td>51.6</td>
+                                    <td>33.3</td>
+                                    <td>47.3</td>
+                                </tr>
+                                <tr>
+                                    <td>GPT-5.2</td>
+                                    <td>30.2</td>
+                                    <td>45.5</td>
+                                    <td>45.2</td>
+                                    <td>26.5</td>
+                                    <td>20.0</td>
+                                    <td>22.7</td>
+                                    <td>25.8</td>
+                                    <td>45.2</td>
+                                    <td>29.2</td>
+                                    <td>32.8</td>
+                                </tr>
+                                <tr>
+                                    <td>Claude-Haiku 4.5</td>
+                                    <td>19.0</td>
+                                    <td>30.3</td>
+                                    <td>38.7</td>
+                                    <td>14.3</td>
+                                    <td>20.0</td>
+                                    <td>13.6</td>
+                                    <td>16.1</td>
+                                    <td>35.5</td>
+                                    <td>8.3</td>
+                                    <td>22.3</td>
+                                </tr>
+                                <tr style="font-weight: bold; background-color: #f0f0f0;">
+                                    <td>Average</td>
+                                    <td>57.0</td>
+                                    <td>63.3</td>
+                                    <td>56.1</td>
+                                    <td>43.4</td>
+                                    <td>57.5</td>
+                                    <td>45.8</td>
+                                    <td>53.6</td>
+                                    <td>59.2</td>
+                                    <td>54.2</td>
+                                    <td>54.5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.95rem;"><b>Table 5:</b> Unsafe Rate (%)
+                        across different sectors for various LLM backbones. PSTS: Professional, Scientific, and
+                        Technical Services; HCSA: Health Care and Social Assistance.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="margin-top: -2.6rem;">
+            <figure class="image is-centered" style="width: 85%; margin: 0 auto 1rem; text-align: center;">
+                <img src="./static/images/fig5.pdf" alt="image" style="width: 100%; height: auto;" loading="lazy" />
+                <figcaption style="text-align: center;">
+                    Figure 5: Comparison of unsafe rates (%) with and without safety prompts across three models.
+                </figcaption>
+            </figure>
+        </section>
+
+        <section class="section" style="margin-top: 0.5rem;">
+            <div class="columns is-centered">
+                <div class="column is-half">
+                    <div style="overflow-x: auto;">
+                        <table class="table is-bordered is-striped is-fullwidth" style="margin: 0 auto; font-size: 0.92rem;">
+                            <thead>
+                                <tr style="background-color: #f5f5f5;">
+                                    <th rowspan="2">Model</th>
+                                    <th colspan="2">F1</th>
+                                    <th colspan="2">Recall</th>
+                                </tr>
+                                <tr style="background-color: #f5f5f5;">
+                                    <th>IF</th>
+                                    <th>QA</th>
+                                    <th>IF</th>
+                                    <th>QA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Gemini 3-Flash</td>
+                                    <td>49.3</td>
+                                    <td>84.2</td>
+                                    <td>32.7</td>
+                                    <td>73.1</td>
+                                </tr>
+                                <tr>
+                                    <td>GPT-5-mini</td>
+                                    <td>61.5</td>
+                                    <td>88.9</td>
+                                    <td>44.4</td>
+                                    <td>81.5</td>
+                                </tr>
+                                <tr>
+                                    <td>Claude Haiku 4.5</td>
+                                    <td>87.3</td>
+                                    <td>95.0</td>
+                                    <td>77.7</td>
+                                    <td>92.0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.95rem;"><b>Table 6:</b> F1 scores and recall comparison between instruction-following setting (IF) and QA judge settings.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!--BibTeX-->
+        <section class="section" id="BibTeX">
+            <div class="container content" style="max-width: 800px; margin: 0 auto;">
+                <h2 class="title">BibTeX</h2>
+                <pre><code>@article{zhou2025safepro,
+                    title={SafePro: Evaluating the Safety of Professional-Level AI Agents},
+                    author={Zhou, Kaiwen and Jangam, Shreedhar and Nagarajan, Ashwin and Polu, Tejas and Oruganti, Suhas and Liu, Chengzhi and Kuo, Ching-Chen and Zheng, Yuting and Narayanaraju, Sravana and Wang, Xin Eric},
+                    journal={arXiv preprint arXiv:2505.16186},
+                    year={2026}
+                    }
+                </code></pre>
+            </div>
+        </section>
+
+
+
+        <section class="section" id="BibTeX">
+            <div class="container is-max-desktop content">
+                <h2 class="title">BibTeX</h2>
+                <pre><code>@article{park2021nerfies,
+            author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
+            title     = {Nerfies: Deformable Neural Radiance Fields},
+            journal   = {ICCV},
+            year      = {2021},
+        }</code></pre>
+            </div>
+        </section>
+
+
+<!-- <footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer> -->
+
+</body>
+</html>
