@@ -232,12 +232,36 @@
             </div>
         </div>
 
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>AI agents are moving from everyday assistance to professional workflows where mistakes can cause real
+                    harm. SafePro evaluates whether today’s frontier models stay safe while executing realistic,
+                    long-horizon professional tasks.</p>
+            </div>
+        </section>
 
         <div class="columns is-centered has-text-centered" style="margin-top: 0rem;">
             <div class="column is-four-fifths">
                 <h2 class="title is-3">The SafePro Dataset</h2>
             </div>
         </div>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>SafePro contains <b>275</b> high-complexity professional tasks spanning <b>9 economic sectors</b> and
+                    <b>51 occupations</b>, each designed to test whether agents follow harmful instructions or refuse
+                    safely.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>To ensure realism and isolate safety failure modes, tasks are created under explicit requirements
+                    (complexity, clarity, relevance, realism, specificity) and refined via an iterative author–reviewer
+                    loop.</p>
+            </div>
+        </section>
 
         <section class="section">
             <figure class="image is-centered" style="width: 85%; margin: 0 auto 1rem;  text-align: center;">
@@ -250,6 +274,14 @@
                     and revision to ensure quality.
                 </figcaption>
             </figure>
+        </section>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>We structure SafePro along two axes: <i>risk outcomes</i> (what kind of harm) and <i>sectors</i>
+                    (where the task
+                    occurs). The distributions below show broad coverage across both.</p>
+            </div>
         </section>
 
         <section class="section">
@@ -355,6 +387,31 @@
                         occupation sector. PSTS: Professional, Scientific, and Technical Services; HCSA: Health Care and
                         Social Assistance.</p>
                 </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>Each task includes explicit <i>unsafe</i> and <i>safe</i> criteria plus a stated malicious motivation
+                    and risk
+                    outcome which makes safety evaluation targeted and auditable.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <figure class="image is-centered" style="width: 85%; margin: 0 auto 1rem;  text-align: center;">
+                <img src="./static/images/fig3.png" alt="image" style="width: 100%; height: auto;" loading="lazy" />
+                <figcaption style="text-align: center;">
+                    Figure 3: Example harmful task from SafePro.
+                </figcaption>
+            </figure>
+        </section>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>Compared to prior agent-safety datasets focused on short daily tasks, SafePro targets <b>professional</b>
+                    work with much longer instructions and support for <b>multimodal inputs</b> and <b>real web search</b>, matching
+                    real agent deployments.</p>
             </div>
         </section>
 
@@ -606,7 +663,8 @@
             <div class="columns is-centered">
                 <div class="column is-half">
                     <div style="overflow-x: auto;">
-                        <table class="table is-bordered is-striped is-fullwidth" style="margin: 0 auto; font-size: 0.92rem;">
+                        <table class="table is-bordered is-striped is-fullwidth"
+                            style="margin: 0 auto; font-size: 0.92rem;">
                             <thead>
                                 <tr style="background-color: #f5f5f5;">
                                     <th rowspan="2">Model</th>
@@ -645,7 +703,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <p style="text-align: center; margin-top: 1rem; font-size: 0.95rem;"><b>Table 6:</b> F1 scores and recall comparison between instruction-following setting (IF) and QA judge settings.</p>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.95rem;"><b>Table 6:</b> F1 scores and
+                        recall comparison between instruction-following setting (IF) and QA judge settings.</p>
                 </div>
             </div>
         </section>
@@ -666,7 +725,7 @@
         </section>
 
 
-<!-- <footer class="footer">
+        <!-- <footer class="footer">
   <div class="container">
     <div class="content has-text-centered">
       <a class="icon-link"
@@ -699,4 +758,5 @@
 </footer> -->
 
 </body>
+
 </html>
