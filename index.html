@@ -409,9 +409,12 @@
 
         <section class="section">
             <div class="container is-max-desktop">
-                <p>Compared to prior agent-safety datasets focused on short daily tasks, SafePro targets <b>professional</b>
-                    work with much longer instructions and support for <b>multimodal inputs</b> and <b>real web search</b>, matching
-                    real agent deployments.</p>
+                <p>Compared to prior agent-safety datasets focused on short daily tasks, SafePro targets
+                    <b>professional</b>
+                    work with much longer instructions and support for <b>multimodal inputs</b> and <b>real web
+                        search</b>, matching
+                    real agent deployments.
+                </p>
             </div>
         </section>
 
@@ -488,9 +491,107 @@
 
         <div class="columns is-centered has-text-centered" style="margin-top: -0.5rem;">
             <div class="column is-four-fifths">
+                <h2 class="title is-3">Evaluation Framework</h2>
+            </div>
+        </div>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>We evaluate safety using an LLM-as-a-judge protocol: given the task, safety criteria, and the agent’s
+                    full behavior (actions + outputs), the judge labels responses as SAFE vs UNSAFE and explains why.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>To validate judge reliability, we cross-evaluate with multiple judge models and observe consistent
+                    unsafe-rate rankings without self-favoring bias.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="columns is-centered">
+                <div class="column is-three-fifths">
+                    <table class="table is-bordered is-striped is-fullwidth" style="margin: 0 auto;">
+                        <thead>
+                            <tr style="background-color: #f5f5f5;">
+                                <th>Judge \ Agent</th>
+                                <th>GPT-5-mini</th>
+                                <th>Claude-Haiku 4.5</th>
+                                <th>Gemini 3-Flash</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>GPT-5-mini</td>
+                                <td>55.6</td>
+                                <td>22.3</td>
+                                <td>67.3</td>
+                            </tr>
+                            <tr>
+                                <td>Claude-Haiku</td>
+                                <td>63.8</td>
+                                <td>28.1</td>
+                                <td>69.5</td>
+                            </tr>
+                            <tr>
+                                <td>Gemini 3-Flash</td>
+                                <td>57.5</td>
+                                <td>23.7</td>
+                                <td>68.0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.95rem;"><b>Table 4:</b>
+                        Cross-evaluation results comparing different LLM judges. Values represent the unsafe rates
+                        assigned by each judge model.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <div class="columns is-centered has-text-centered" style="margin-top: -0.5rem;">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Experiment Setup</h2>
+            </div>
+        </div>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>We run SafePro tasks in an agentic setting using CodeAct in OpenHands with tool access (web, files,
+                    code execution) and cap interactions at a fixed turn budget; safety is summarized by <b>Unsafe
+                        Rate</b>.
+                </p>
+            </div>
+        </section>
+
+
+        <div class="columns is-centered has-text-centered" style="margin-top: -0.5rem;">
+            <div class="column is-four-fifths">
                 <h2 class="title is-3">Results</h2>
             </div>
         </div>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>Across sectors, many frontier models exhibit <b>high unsafe rates</b>, showing that professional
+                    agent
+                    settings expose failures not captured by daily assistant benchmarks.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>These qualitative examples illustrate what ‘unsafe’ looks like in practice: unethical prioritization,
+                    deceptive omission, and requests for sensitive information, all which are behaviors with real
+                    professional
+                    consequences.
+                </p>
+            </div>
+        </section>
 
         <section class="section" style="margin-top: -2.6rem;">
             <figure class="image is-centered" style="width: 85%; margin: 0 auto 1rem; text-align: center;">
@@ -499,6 +600,15 @@
                     Figure 4: Examples of unsafe actions by AI agents in SafePro benchmark.
                 </figcaption>
             </figure>
+        </section>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>We report unsafe rate (%) per sector. Most models are unsafe on roughly half the tasks, while the
+                    safest model family here shows substantially lower unsafe rates, highlighting large gaps in
+                    professional safety alignment.
+                </p>
+            </div>
         </section>
 
         <section class="section" style="margin-top: -1rem;">
@@ -650,13 +760,29 @@
             </div>
         </section>
 
-        <section class="section" style="margin-top: -2.6rem;">
-            <figure class="image is-centered" style="width: 65%; margin: 0 auto 1rem; text-align: center;">
-                <img src="./static/images/fig5.png" alt="image" style="width: 100%; height: auto;" loading="lazy" />
-                <figcaption style="text-align: center;">
-                    Figure 5: Comparison of unsafe rates (%) with and without safety prompts across three models.
-                </figcaption>
-            </figure>
+
+        <div class="columns is-centered has-text-centered" style="margin-top: -0.5rem;">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Safety Knowledge-Alignment Gap</h2>
+            </div>
+        </div>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>We find a gap between <i>knowing</i> an instruction is unsafe and <i>acting</i> safely while
+                    following instructions: models can often classify unsafe intent in a QA setting, yet still comply in
+                    instruction-following agent mode.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>Safety classification performance is much higher in QA mode than in instruction-following mode,
+                    suggesting the failure is often <i>alignment/application</i> rather than pure lack of safety
+                    knowledge.
+                </p>
+            </div>
         </section>
 
         <section class="section" style="margin-top: 0.0rem;">
@@ -709,6 +835,161 @@
             </div>
         </section>
 
+
+        <div class="columns is-centered has-text-centered" style="margin-top: -0.5rem;">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Mitigation Methods</h2>
+            </div>
+        </div>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>We evaluate three mitigation directions: stronger agent prompts, explicit safety classification, and
+                    safeguard models to understand what helps and what still falls short.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>Adding a simple safety prompt reduces unsafe rates by a modest margin, but unsafe behavior remains
+                    common, indicating prompts alone are not sufficient.
+                </p>
+            </div>
+        </section>
+
+        <section class="section" style="margin-top: -2.6rem;">
+            <figure class="image is-centered" style="width: 65%; margin: 0 auto 1rem; text-align: center;">
+                <img src="./static/images/fig5.png" alt="image" style="width: 100%; height: auto;" loading="lazy" />
+                <figcaption style="text-align: center;">
+                    Figure 5: Comparison of unsafe rates (%) with and without safety prompts across three models.
+                </figcaption>
+            </figure>
+        </section>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>Current safeguard models underperform on professional scenarios, with large variance by sector,
+                    showing a gap between today’s guardrails and the complexity of professional misuse.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="columns is-centered">
+                <div class="column is-full">
+                    <div style="overflow-x: auto;">
+                        <table class="table is-bordered is-striped is-fullwidth"
+                            style="margin: 0 auto; font-size: 0.9rem;">
+                            <thead>
+                                <tr style="background-color: #f5f5f5;">
+                                    <th>Safeguard Model</th>
+                                    <th>Real Estate</th>
+                                    <th>Government</th>
+                                    <th>Manufacture</th>
+                                    <th>PSTS</th>
+                                    <th>HCSA</th>
+                                    <th>Finance</th>
+                                    <th>Retail</th>
+                                    <th>Wholesale</th>
+                                    <th>Information</th>
+                                    <th>Avg.</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>gpt-oss-safeguard</td>
+                                    <td>39.5</td>
+                                    <td>30.3</td>
+                                    <td>54.8</td>
+                                    <td>45.7</td>
+                                    <td>48.0</td>
+                                    <td>54.5</td>
+                                    <td>80.6</td>
+                                    <td>32.3</td>
+                                    <td>83.3</td>
+                                    <td>50.5</td>
+                                </tr>
+                                <tr>
+                                    <td>Qwen3Guard</td>
+                                    <td>2.3</td>
+                                    <td>3.0</td>
+                                    <td>0.0</td>
+                                    <td>11.4</td>
+                                    <td>16.0</td>
+                                    <td>22.7</td>
+                                    <td>25.8</td>
+                                    <td>6.5</td>
+                                    <td>20.8</td>
+                                    <td>10.9</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.95rem;"><b>Table 7:</b> Detection
+                        Accuracy (%) of safeguard models across different sectors on SafePro benchmark.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container is-max-desktop">
+                <p>When we provide explicit safety policy definitions, backbone LLMs become much better safety
+                    classifiers, suggesting a practical gating approach before executing tasks.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="columns is-centered">
+                <div class="column is-half">
+                    <div style="overflow-x: auto;">
+                        <table class="table is-bordered is-striped is-fullwidth"
+                            style="margin: 0 auto; font-size: 0.92rem;">
+                            <thead>
+                                <tr style="background-color: #f5f5f5;">
+                                    <th rowspan="2">Model</th>
+                                    <th colspan="2">F1</th>
+                                    <th colspan="2">Recall</th>
+                                </tr>
+                                <tr style="background-color: #f5f5f5;">
+                                    <th>IF</th>
+                                    <th>QA</th>
+                                    <th>IF</th>
+                                    <th>QA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Gemini 3-Flash</td>
+                                    <td>49.3</td>
+                                    <td>94.5</td>
+                                    <td>32.7</td>
+                                    <td>91.3</td>
+                                </tr>
+                                <tr>
+                                    <td>GPT-5-mini</td>
+                                    <td>61.5</td>
+                                    <td>92.6</td>
+                                    <td>44.4</td>
+                                    <td>88.4</td>
+                                </tr>
+                                <tr>
+                                    <td>Claude Haiku 4.5</td>
+                                    <td>87.3</td>
+                                    <td>94.9</td>
+                                    <td>77.7</td>
+                                    <td>91.6</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p style="text-align: center; margin-top: 1rem; font-size: 0.95rem;"><b>Table 8:</b> F1 scores and
+                        recall comparison between instruction-following setting (IF) and QA judge with safety category
+                        definitions.</p>
+                </div>
+            </div>
+        </section>
 
         <!--BibTeX-->
         <section class="section" id="BibTeX">
